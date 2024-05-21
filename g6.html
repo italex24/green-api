@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+     <title>Test GREEN-API</title>
+   </head>
+<body>
+      <h1>@EAproger</h2>
+
+<form name="form1" action="" method="post">
+
+<table border="0">
+<tr>
+   <th>Введите данные</th><th></th><th>Результат</th></tr>
+<tr>
+   <td>
+   <center>
+
+	<br/>
+
+	<input type="text" id = "in1id" placeholder="idInstance" > 
+	<br/><br/>
+
+	<input type="text" id = "in2id" placeholder="ApiTokenInstance" >
+	<br/><br/>
+
+	<input type="button" value="getSettings" onclick="k1URL()">
+	<br/><br/>
+
+	<input type="button" value="getStateInstance" onclick="k2URL()">
+	<br/><br/>
+
+	<br/><br/>
+
+	<input type="text" id = "in3id" placeholder="7771234567" >
+	<br/><br/>
+
+       <textarea name="textarea" id = "in4id" rows="5" cols="20" >Сообщение</textarea>
+	<br/><br/>
+
+	<input type="button" value="SendMessage" onclick="k3URL()">
+	<br/><br/>
+
+	<br/><br/>
+
+	<input type="text" id = "in5id" placeholder="7771234567" >
+	<br/><br/>
+
+       	<input type="text" id = "in6id" value="http://c95276rh.beget.tech/kar-2024-05-21.png">
+	<br/><br/>
+
+	<input type="button" value="SendFileByUrl" onclick="k4URL()">
+	<br/><br/>
+  
+   </center>
+   </td>
+   <td width=" 50">
+    
+   </td>
+   <td>
+
+	<textarea name="textarea" id = "out1id" rows="33" cols="111" disabled>Тут будет выведен результат</textarea>
+
+   </td>
+</tr>
+</table>
+
+
+<script>
+  //    alert( "Привет ӔТО Александр Ермолаев" );
+</script>
+
+</form>
+
+
+<script>
+function k1URL() // getSettings
+{
+let url31 =  document.getElementById("in1id").value  // '^idInstance^';
+let url32 =  document.getElementById("in2id").value  // '^apiTokenInstance^';
+let url3 = 'https://api.green-api.com/waInstance' + url31 + '/getSettings/' + url32;
+fetch(url3,{method: "GET"})
+  .then(response => response.json())
+  .then(response => document.getElementById("out1id").textContent = JSON.stringify(response));  
+}
+
+
+function k2URL() // getStateInstance
+{
+let url31 =  document.getElementById("in1id").value  // '^idInstance^';
+let url32 =  document.getElementById("in2id").value  // '^apiTokenInstance^';
+let url3 = 'https://api.green-api.com/waInstance' + url31 + '/getStateInstance/' + url32;
+fetch(url3,{method: "GET"})
+  .then(response => response.json())
+  .then(response => document.getElementById("out1id").textContent = JSON.stringify(response));  
+}
+
+
+ function k3URL() // SendMessage
+{
+let url31 =  document.getElementById("in1id").value  // '^idInstance^';
+let url32 =  document.getElementById("in2id").value  // '^apiTokenInstance^';
+let url33 =  {'chatId': document.getElementById("in3id").value+'@c.us' , 'message': document.getElementById("in4id").value };
+let url3 = 'https://api.green-api.com/waInstance' + url31 + '/sendMessage/' + url32;
+fetch(url3,{method: 'POST', headers: {'Content-Type': 'application/json' }, body: JSON.stringify(url33)})
+  .then(response => response.json())
+  .then(response => document.getElementById("out1id").textContent = JSON.stringify(response));  
+}
+
+
+ function k4URL() // SendFileByUrl
+{
+let url31 =  document.getElementById("in1id").value  // '^idInstance^';
+let url32 =  document.getElementById("in2id").value  // '^apiTokenInstance^';
+let put3 =  document.getElementById("in6id").value // '^put i imya^';
+let imya =  put3.slice(put3.lastIndexOf("/")+1) ;  // '^imya^';
+alert( imya );
+let url33 =  {'chatId': document.getElementById("in5id").value+'@c.us' , 'urlFile': put3 , 'fileName': imya};
+let url3 = 'https://api.green-api.com/waInstance' + url31 + '/SendFileByUrl/' + url32;
+fetch(url3,{method: 'POST', headers: {'Content-Type': 'application/json' }, body: JSON.stringify(url33)})
+  .then(response => response.json())
+  .then(response => document.getElementById("out1id").textContent = JSON.stringify(response));  
+}
+
+
+
+
+</script>
+
+
+</html>
